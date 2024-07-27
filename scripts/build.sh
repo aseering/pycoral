@@ -19,7 +19,7 @@ readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly MAKEFILE="${SCRIPT_DIR}/../Makefile"
 readonly DOCKER_CPUS="${DOCKER_CPUS:=k8 aarch64 armv7a}"
 readonly DOCKER_IMAGE_OPTIONS="--progress=plain"
-PYTHON_VERSIONS="36 37 38 39 310"
+readonly PYTHON_VERSIONS="${PYTHON_VERSIONS:=36 37 38 39 310 311 312}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -45,6 +45,8 @@ function docker_image {
     38) echo "ubuntu:20.04" ;;
     39) echo "debian:bullseye" ;;
     310) echo "ubuntu:22.04" ;;
+    311) echo "debian:bookworm" ;;
+    312) echo "ubuntu:24.04" ;;
     *) echo "Unsupported python version: $1" 1>&2; exit 1 ;;
   esac
 }
